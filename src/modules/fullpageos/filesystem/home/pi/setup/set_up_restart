@@ -2,12 +2,12 @@
 
 . /home/pi/setup/setup.config
 #write out current crontab
-crontab -l > tmpc
+sudo crontab -l > tmpc
 job="$(echo "$config_restart")"
 job+=" reboot now"
 echo "$job" >> tmpc
 
 #install new cron file
-crontab tmpc
+sudo crontab tmpc
 rm tmpc
 echo "$job"
