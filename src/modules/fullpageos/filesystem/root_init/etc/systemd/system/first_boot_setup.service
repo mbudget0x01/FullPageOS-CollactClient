@@ -1,10 +1,13 @@
 [Unit]
 Description=First Boot Setup
 ConditionPathExists=/boot/firstboot
+Wants=network-pre.target
+Before=network-pre.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/pi/setup/first_boot_setup >> /var/log/first_boot.log
+User=root
+ExecStart=/bin/bash "/home/pi/setup/first_boot_setup"
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=network.target

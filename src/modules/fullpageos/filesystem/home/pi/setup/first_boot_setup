@@ -1,25 +1,44 @@
 #!/bin/bash
 
+#run scriptas root
+
 execute_config_script () {
   chmod +x $1
   . $1 $2
 }
 
-##########################################
-echo "Setting Hostname"
-hn=$(execute_config_script "/home/pi/setup/create_hostname")
-hn=$(echo $hn)
-echo $hn
+firstboot=/boot/firstboot
+if test -f "$firstboot"; then
+  ##########################################
+  echo "Setting up Cron for restart"
+  rj=$(execute_config_script  "/home/pi/setup/set_up_restart")
+  echo "$rj"
+  ##########################################
+  echo cleaning up
+  ##########################################
+fi
 
-sudo hostname -b $hn
+if test -f "$firstboot"; then
+  ##########################################
+  echo "Setting Hostname"
+  hn=$(execute_config_script "/home/pi/setup/create_hostname")
+  hn=$(echo $hn)
+  echo $hn
 
-##########################################
-echo "Setting up Cron for restart"
-rj=$(execute_config_script  "/home/pi/setup/set_up_restart")
-echo "$rj"
-##########################################
-echo cleaning up
-sudo rm /boot/firstboot
+  echo $hn > /etc/hostname
+  /bin/hostname -F /etc/hostname
+  mhn="127.0.0.1     "
+  mhn+=$(cat /etc/hostname)
+  echo "$mhn" | tee -a /etc/hosts
+
+  #See https://github.com/guysoft/CustomPiOS/blob/devel/src/modules/admin-toolkit/filesystem/tools/HostNameScript/hostname_change.sh
+  pkill chromium
+  rm -rf /home/pi/.config/chromium/Singleton*
+  ##########################################
+  echo cleaning up
+  rm /boot/firstboot
+  ##########################################
+fi
 
 echo "restart required"
-sudo reboot now
+reboot -h now
