@@ -144,6 +144,13 @@ then
     systemctl enable x11vnc.service
 fi
 
+#enable first_boot_setup service
+systemctl enable first_boot_setup.service
+#as this is developed on windows
+chmod +x /home/pi/scripts/*
+#set file rights
+chmod +x /home/pi/setup/*
+
 #echo "sudo -u pi startx /home/pi/scripts/run_onepageos &" >> /etc/rc.local
 #echo "(sleep 15 ; sudo -u pi /home/pi/scripts/fullscreen) &" >> /etc/rc.local
 

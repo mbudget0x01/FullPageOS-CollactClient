@@ -1,0 +1,10 @@
+[Unit]
+Description=First Boot Setup
+ConditionPathExists=/boot/firstboot
+
+[Service]
+Type=oneshot
+ExecStart=/home/pi/setup/first_boot_setup >> /var/log/first_boot.log
+
+[Install]
+WantedBy=multi-user.target

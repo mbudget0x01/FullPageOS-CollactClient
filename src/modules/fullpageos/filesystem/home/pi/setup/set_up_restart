@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#write out current crontab
+crontab -l > tmpc
+job=$config_restart
+job+=" reboot now"
+echo $job >> tmpc
+
+#install new cron file
+crontab tmpc
+rm tmpc
+echo $job

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+execute_config_script () {
+  chmod +x $1
+  . $1 $2
+}
+
+##########################################
+echo "Setting Hostname"
+hn=$(/home/pi/setup/execute_config_script "/home/pi/setup/create_hostname")
+echo $hn
+
+sudo hostname -b $hn
+
+##########################################
+echo "Setting password for pi"
+execute_config_script "/home/pi/setup/set_password" "/home/pi/setup/first_boot.config"
+
+##########################################
+echo "Setting up Cron for restart"
+rj=$(/home/pi/setup/execute_config_script  "/home/pi/setup/set_up_restart")
+echo $rj
+##########################################
+echo cleaning up
+sudo rm /boot/firstboot
+#remove as it can containe sensible information
+sudo rm /home/pi/setup/first_boot.config
+
+echo "restart required"
+sudo reboot now

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#static part
+
+staticN="FP-Collact"
+
+#get an UUID
+UUID=$(cat /proc/sys/kernel/random/uuid)
+
+#make it md5
+md5=$(echo $UUID | md5sum)
+
+#trunkate identifier
+identifier="${md5:0:10}"
+
+hostname=$staticN
+hostname+="-"
+hostname+=$identifier
+echo $hostname
