@@ -1,5 +1,10 @@
-export DIST_NAME=FullpageOS
-export DIST_VERSION=0.12.0
+#custom build parameters
+export DIST_NAME=FullpageOS-Collact-Client
+export DIST_VERSION=0.1.0alpha
+export FULLPAGEOS_INCLUDE_X11VNC=no
+export FULLPAGEOS_OVERRIDE_PASSWORD
+
+#standard build parameters
 export MODULES="base(raspicam, network, disable-services(gui(fullpageos), usage-statistics))"
 
 # if set will enlarge root parition prior to build by provided size in MB
