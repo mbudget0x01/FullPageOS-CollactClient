@@ -7,7 +7,8 @@ execute_config_script () {
 
 ##########################################
 echo "Setting Hostname"
-hn=$(/home/pi/setup/execute_config_script "/home/pi/setup/create_hostname")
+hn=$(execute_config_script "/home/pi/setup/create_hostname")
+hn=$(echo $hn)
 echo $hn
 
 sudo hostname -b $hn
@@ -18,8 +19,8 @@ execute_config_script "/home/pi/setup/set_password" "/home/pi/setup/first_boot.c
 
 ##########################################
 echo "Setting up Cron for restart"
-rj=$(/home/pi/setup/execute_config_script  "/home/pi/setup/set_up_restart")
-echo $rj
+rj=$(execute_config_script  "/home/pi/setup/set_up_restart")
+echo "$rj"
 ##########################################
 echo cleaning up
 sudo rm /boot/firstboot
