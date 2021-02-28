@@ -144,6 +144,12 @@ then
     systemctl enable x11vnc.service
 fi
 
+#override page
+if [ "$FULLPAGEOS_COLLACT_CUSTOM_PAGE" != "default" ]
+then
+    echo "$FULLPAGEOS_COLLACT_CUSTOM_PAGE" > /boot/fullpageos.txt
+fi 
+
 #enable first_boot_setup service
 systemctl enable first_boot_setup.service
 #as this is developed on windows

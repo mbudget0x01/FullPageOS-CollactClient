@@ -39,3 +39,6 @@
 
 # Install and enable x11vnc service
 [ -n "$FULLPAGEOS_INCLUDE_X11VNC" ] || FULLPAGEOS_INCLUDE_X11VNC=yes
+
+# Install and enable x11vnc service
+[ -n "$FULLPAGEOS_COLLACT_CUSTOM_PAGE" ] || FULLPAGEOS_COLLACT_CUSTOM_PAGE=default
