@@ -4,7 +4,7 @@
 #write out current crontab
 sudo crontab -l > tmpc
 job="$(echo "$config_restart")"
-job+=" reboot now"
+job+=" /sbin/shutdown"
 echo "$job" >> tmpc
 
 #install new cron file
