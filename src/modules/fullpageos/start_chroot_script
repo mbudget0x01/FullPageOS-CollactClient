@@ -165,7 +165,8 @@ chmod +x /usr/bin/setup/*
 
 echo "server time.nist.gov" >> /etc/ntp.conf
 echo "server ntp.ubuntu.com" >> /etc/ntp.conf
-
+cat  /welcome_message >> /etc/motd
+rm /welcome_message
 #cleanup
 apt-get clean
 apt-get autoremove -y
