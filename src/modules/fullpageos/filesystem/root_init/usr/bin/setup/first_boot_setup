@@ -11,7 +11,7 @@ firstboot=/boot/firstboot
 if test -f "$firstboot"; then
   ##########################################
   echo "Setting up Cron for restart"
-  rj=$(execute_config_script  "/home/pi/setup/set_up_restart")
+  rj=$(execute_config_script  "/usr/bin/setup/set_up_restart")
   echo "$rj"
   ##########################################
   echo cleaning up
@@ -21,7 +21,7 @@ fi
 if test -f "$firstboot"; then
   ##########################################
   echo "Setting Hostname"
-  hn=$(execute_config_script "/home/pi/setup/create_hostname")
+  hn=$(execute_config_script "/usr/bin/setup/create_hostname")
   hn=$(echo $hn)
   echo $hn
 

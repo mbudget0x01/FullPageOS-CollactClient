@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. /home/pi/setup/setup.config
+. /usr/bin/setup/setup.config
 #write out current crontab
 sudo crontab -l > tmpc
 job="$(echo "$config_restart")"

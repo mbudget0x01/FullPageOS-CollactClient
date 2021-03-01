@@ -7,7 +7,7 @@ Before=network-pre.target
 [Service]
 Type=oneshot
 User=root
-ExecStart=/bin/bash "/home/pi/setup/first_boot_setup"
+ExecStart=/bin/bash "/usr/bin/setup/first_boot_setup"
 
 [Install]
 WantedBy=network.target
